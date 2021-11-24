@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -15,7 +14,23 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: Scaffold(
+      home: LoginPage(),
+    );
+  }
+}
+
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+
+class _LoginPageState extends State<LoginPage> {
+  String username = "";
+  String password = "";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
         body: Container(
           alignment: Alignment.center,
           child: Center(
@@ -40,6 +55,10 @@ class MyApp extends StatelessWidget {
                           }
                           return null;
                         },
+                        initialValue: username,
+                        onChanged: (value) {
+                          setState(() {username = value;});
+                        },
                       ), 
                     ),
                     Padding(
@@ -55,13 +74,20 @@ class MyApp extends StatelessWidget {
                           return null;
                         },
                         obscureText: true,
+                        initialValue: password,
+                        onChanged: (value) {
+                          setState(() {
+                            password = value;
+                          });
+                        },
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: ElevatedButton(
                           onPressed: () {
-                            debugPrint("on pressed");
+                            debugPrint('on pressed username: $username');
+                            debugPrint('on pressed password: $password');
                           },
                           child: const Text("Submit"),
                         ),
@@ -73,8 +99,7 @@ class MyApp extends StatelessWidget {
             ),
           ) 
         
-      )
-    );
+      );
   }
 }
 
