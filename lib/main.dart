@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:viding/barcodeScanner.dart';
 
 void main() {
   runApp(MyApp());
@@ -88,6 +89,12 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () {
                             debugPrint('on pressed username: $username');
                             debugPrint('on pressed password: $password');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return BarcodePage();
+                              })
+                            );
                           },
                           child: const Text("Submit"),
                         ),
